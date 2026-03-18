@@ -1,0 +1,19 @@
+aid: marinetraffic
+url: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/apis.yml
+apis:
+- aid: marinetraffic:marinetraffic-api
+  name: MarineTraffic AIS Vessel Tracking API
+  tags:
+  - Maritime
+  - AIS
+  - Vessel Tracking
+  - Shipping
+  - XML
+  image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
+  humanURL: https://www.marinetraffic.com/en/ais-api-services
+  baseURL: https://services.marinetraffic.com/api
+  properties:
+  - url: https://www.marinetraffic.com/en/ais-api-services
+    type: Documentation
+  description: >-
+    MarineTraffic provides AIS (Automatic Identification System) vessel tracking APIs delivering real-time vessel positions, speeds, headings, destinations, and ETAs. The REST API returns XML-formatted AIS data for fleet monitoring, port operations, and supply chain visibility.
