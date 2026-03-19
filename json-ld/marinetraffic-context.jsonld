@@ -1,0 +1,93 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "mt": "https://www.marinetraffic.com/ontology/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Vessel": "schema:Vehicle",
+    "MMSI": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "IMO": {
+      "@id": "mt:imoNumber",
+      "@type": "xsd:integer"
+    },
+    "SHIP_ID": {
+      "@id": "mt:shipId",
+      "@type": "xsd:integer"
+    },
+    "VESSEL_NAME": "schema:name",
+    "CALLSIGN": "mt:callsign",
+    "FLAG": "schema:countryOfOrigin",
+    "YEAR_BUILT": {
+      "@id": "schema:productionDate",
+      "@type": "xsd:gYear"
+    },
+    "LENGTH": {
+      "@id": "schema:depth",
+      "@type": "xsd:decimal"
+    },
+    "WIDTH": {
+      "@id": "schema:width",
+      "@type": "xsd:decimal"
+    },
+    "GT": {
+      "@id": "mt:grossTonnage",
+      "@type": "xsd:integer"
+    },
+    "DWT": {
+      "@id": "mt:deadweightTonnage",
+      "@type": "xsd:integer"
+    },
+    "LAT": {
+      "@id": "geo:lat",
+      "@type": "xsd:decimal"
+    },
+    "LON": {
+      "@id": "geo:long",
+      "@type": "xsd:decimal"
+    },
+    "SPEED": {
+      "@id": "mt:speedOverGround",
+      "@type": "xsd:decimal"
+    },
+    "HEADING": {
+      "@id": "mt:trueHeading",
+      "@type": "xsd:integer"
+    },
+    "COURSE": {
+      "@id": "mt:courseOverGround",
+      "@type": "xsd:decimal"
+    },
+    "STATUS": {
+      "@id": "mt:navigationalStatus",
+      "@type": "xsd:integer"
+    },
+    "TIMESTAMP": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "DESTINATION": {
+      "@id": "schema:toLocation",
+      "@type": "xsd:string"
+    },
+    "ETA": {
+      "@id": "schema:arrivalTime",
+      "@type": "xsd:dateTime"
+    },
+    "PortCall": "schema:Event",
+    "PORT_NAME": "schema:name",
+    "UNLOCODE": "schema:identifier",
+    "ARRIVAL": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "DEPARTURE": {
+      "@id": "schema:endDate",
+      "@type": "xsd:dateTime"
+    }
+  }
+}
