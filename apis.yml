@@ -1,30 +1,25 @@
 aid: marinetraffic
-url: 
-  https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/apis.yml
 apis:
   - aid: marinetraffic:marinetraffic-ais-api
     name: MarineTraffic AIS Vessel Tracking API
     tags:
-      - Maritime
       - AIS
-      - Vessel Tracking
+      - Maritime
+      - Real-Time
       - Shipping
-      - Real-time
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
+      - Vessel Tracking
+    image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
     humanURL: https://www.kpler.com/product/maritime/data-services
     baseURL: https://services.marinetraffic.com/api
     properties:
       - url: https://www.kpler.com/product/maritime/data-services
         type: Documentation
-      - url: 
-          https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/openapi/marinetraffic-ais-openapi.yml
+      - url: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/openapi/marinetraffic-ais-openapi.yml
         type: OpenAPI
-      - url: 
-          https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/json-schema/marinetraffic-vessel-schema.json
+      - url: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/json-schema/marinetraffic-vessel-schema.json
         type: JSONSchema
-      - url: 
-          https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/json-ld/marinetraffic-context.jsonld
+      - url: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/json-ld/marinetraffic-context.jsonld
         type: JSONLDContext
     description: >-
       MarineTraffic AIS API provides real-time vessel position data from over 13,000
@@ -33,12 +28,11 @@ apis:
   - aid: marinetraffic:marinetraffic-real-time-events-api
     name: MarineTraffic Real-time Events API
     tags:
-      - Maritime
-      - Port Calls
       - Bunkering
       - Events
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
+      - Maritime
+      - Port Calls
+    image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
     humanURL: https://www.kpler.com/product/maritime/data-services
     baseURL: https://services.marinetraffic.com/api
     properties:
@@ -50,12 +44,11 @@ apis:
   - aid: marinetraffic:marinetraffic-predictive-events-api
     name: MarineTraffic Predictive Events API
     tags:
-      - Maritime
       - ETA
+      - Maritime
       - Predictions
       - Voyage Forecasting
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
     humanURL: https://www.kpler.com/product/maritime/data-services
     baseURL: https://services.marinetraffic.com/api
     properties:
@@ -67,11 +60,10 @@ apis:
   - aid: marinetraffic:marinetraffic-past-events-api
     name: MarineTraffic Past Events API
     tags:
-      - Maritime
       - Historical
+      - Maritime
       - Vessel Movements
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
     humanURL: https://www.kpler.com/product/maritime/data-services
     baseURL: https://services.marinetraffic.com/api
     properties:
@@ -85,10 +77,9 @@ apis:
     name: MarineTraffic Ship Database API
     tags:
       - Maritime
-      - Vessel Data
       - Ship Registry
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
+      - Vessel Data
+    image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
     humanURL: https://www.kpler.com/product/maritime/data-services
     baseURL: https://services.marinetraffic.com/api
     properties:
@@ -101,13 +92,12 @@ apis:
   - aid: marinetraffic:marinetraffic-api
     name: MarineTraffic AIS Vessel Tracking API
     tags:
-      - Maritime
       - AIS
-      - Vessel Tracking
+      - Maritime
       - Shipping
+      - Vessel Tracking
       - XML
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
     humanURL: https://www.marinetraffic.com/en/ais-api-services
     baseURL: https://services.marinetraffic.com/api
     properties:
@@ -125,14 +115,11 @@ common:
     type: Documentation
   - url: https://www.kpler.com/company/terms-of-use
     type: TermsOfService
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/openapi/marinetraffic-ais-openapi.yml
+  - url: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/openapi/marinetraffic-ais-openapi.yml
     type: OpenAPI
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/json-schema/marinetraffic-vessel-schema.json
+  - url: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/json-schema/marinetraffic-vessel-schema.json
     type: JSONSchema
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/json-ld/marinetraffic-context.jsonld
+  - url: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/json-ld/marinetraffic-context.jsonld
     type: JSONLDContext
 maintainer:
   name: Kin Lane

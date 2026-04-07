@@ -531,9 +531,9 @@ components:
               description:
                 type: string
 tags:
-  - name: Vessels
-    description: Vessel static data and characteristics
-  - name: Vessel Tracking
-    description: Real-time and historical vessel positions
   - name: Port Operations
     description: Port calls, arrivals, and departures
+  - name: Vessel Tracking
+    description: Real-time and historical vessel positions
+  - name: Vessels
+    description: Vessel static data and characteristics
