@@ -1,10 +1,23 @@
-# Unknown (marinetraffic)
+# MarineTraffic (marinetraffic)
+
+MarineTraffic, a Kpler company, is a global provider of vessel tracking and maritime intelligence data. The platform offers AIS-based real-time vessel positions, port calls, predictive ETAs, historical voyage data, and ship registry information used for fleet monitoring, port operations, and supply chain visibility.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/apis.yml)
 
+## Scope
+
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
+
+## Tags:
+
+ - AIS, Maritime, Shipping, Vessel Tracking
+
 ## Timestamps
 
-- **Modified:** 2026-03-18 
+- **Created:** 2026-03-18
+- **Modified:** 2026-04-28
 
 ## APIs
 
@@ -13,10 +26,11 @@ MarineTraffic AIS API provides real-time vessel position data from over 13,000 A
 
 **Human URL:** [https://www.kpler.com/product/maritime/data-services](https://www.kpler.com/product/maritime/data-services)
 
+**Base URL:** https://services.marinetraffic.com/api
 
 #### Tags:
 
- - Maritime, AIS, Vessel Tracking, Shipping, Real-time
+ - AIS, Maritime, Real-Time, Shipping, Vessel Tracking
 
 #### Properties
 
@@ -30,10 +44,11 @@ MarineTraffic Real-time Events API delivers live updates on port calls, bunkerin
 
 **Human URL:** [https://www.kpler.com/product/maritime/data-services](https://www.kpler.com/product/maritime/data-services)
 
+**Base URL:** https://services.marinetraffic.com/api
 
 #### Tags:
 
- - Maritime, Port Calls, Bunkering, Events
+ - Bunkering, Events, Maritime, Port Calls
 
 #### Properties
 
@@ -44,10 +59,11 @@ MarineTraffic Predictive Events API delivers predicted destinations, estimated t
 
 **Human URL:** [https://www.kpler.com/product/maritime/data-services](https://www.kpler.com/product/maritime/data-services)
 
+**Base URL:** https://services.marinetraffic.com/api
 
 #### Tags:
 
- - Maritime, ETA, Predictions, Voyage Forecasting
+ - ETA, Maritime, Predictions, Voyage Forecasting
 
 #### Properties
 
@@ -58,10 +74,11 @@ MarineTraffic Past Events API provides access to historical vessel movements and
 
 **Human URL:** [https://www.kpler.com/product/maritime/data-services](https://www.kpler.com/product/maritime/data-services)
 
+**Base URL:** https://services.marinetraffic.com/api
 
 #### Tags:
 
- - Maritime, Historical, Vessel Movements
+ - Historical, Maritime, Vessel Movements
 
 #### Properties
 
@@ -72,24 +89,26 @@ MarineTraffic Ship Database API provides detailed information on vessel characte
 
 **Human URL:** [https://www.kpler.com/product/maritime/data-services](https://www.kpler.com/product/maritime/data-services)
 
+**Base URL:** https://services.marinetraffic.com/api
 
 #### Tags:
 
- - Maritime, Vessel Data, Ship Registry
+ - Maritime, Ship Registry, Vessel Data
 
 #### Properties
 
 - [Documentation](https://www.kpler.com/product/maritime/data-services)
 
-### MarineTraffic AIS Vessel Tracking API
+### MarineTraffic AIS Vessel Tracking API (XML)
 MarineTraffic provides AIS (Automatic Identification System) vessel tracking APIs delivering real-time vessel positions, speeds, headings, destinations, and ETAs. The REST API returns XML-formatted AIS data for fleet monitoring, port operations, and supply chain visibility.
 
 **Human URL:** [https://www.marinetraffic.com/en/ais-api-services](https://www.marinetraffic.com/en/ais-api-services)
 
+**Base URL:** https://services.marinetraffic.com/api
 
 #### Tags:
 
- - Maritime, AIS, Vessel Tracking, Shipping, XML
+ - AIS, Maritime, Shipping, Vessel Tracking, XML
 
 #### Properties
 
@@ -103,3 +122,9 @@ MarineTraffic provides AIS (Automatic Identification System) vessel tracking API
 - [OpenAPI](https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/openapi/marinetraffic-ais-openapi.yml)
 - [JSONSchema](https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/json-schema/marinetraffic-vessel-schema.json)
 - [JSONLDContext](https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/json-ld/marinetraffic-context.jsonld)
+
+## Maintainers
+
+**FN:** Kin Lane
+
+**Email:** kin@apievangelist.com

@@ -1,4 +1,21 @@
 aid: marinetraffic
+name: MarineTraffic
+description: >-
+  MarineTraffic, a Kpler company, is a global provider of vessel tracking and maritime
+  intelligence data. The platform offers AIS-based real-time vessel positions, port
+  calls, predictive ETAs, historical voyage data, and ship registry information used
+  for fleet monitoring, port operations, and supply chain visibility.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
+tags:
+  - AIS
+  - Maritime
+  - Shipping
+  - Vessel Tracking
+created: '2026-03-18'
+specificationVersion: '0.19'
 url: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/apis.yml
 apis:
   - aid: marinetraffic:marinetraffic-ais-api
@@ -121,10 +138,7 @@ common:
     type: JSONSchema
   - url: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/json-ld/marinetraffic-context.jsonld
     type: JSONLDContext
-maintainer:
-  name: Kin Lane
-  email: kin@apievangelist.com
-modified: '2026-03-18'
-description: >-
-  Your gateway to cutting-edge maritime data. Trusted by over 10,000 organisations
-  worldwide. Book a free demo today.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+modified: '2026-04-28'
