@@ -1,0 +1,490 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: MarineTraffic AIS Vessel Tracking API
+  description: MarineTraffic AIS API provides real-time vessel position data from over 13,000 AIS receivers globally. Returns
+    vessel positions, speeds, headings, and voyage information for fleet monitoring, port operations, and supply chain visibility.
+  tags:
+  - Marinetraffic
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: marinetraffic
+    baseUri: https://services.marinetraffic.com/api
+    description: MarineTraffic AIS Vessel Tracking API HTTP API.
+    authentication:
+      type: apikey
+      in: query
+      name: apikey
+      value: '{{MARINETRAFFIC_TOKEN}}'
+    resources:
+    - name: exportvessel-apikey
+      path: /exportvessel/{apikey}
+      operations:
+      - name: getvesseldetails
+        method: GET
+        description: Get vessel details
+        inputParameters:
+        - name: apikey
+          in: path
+          type: string
+          required: true
+          description: Your MarineTraffic API key
+        - name: v
+          in: query
+          type: integer
+          description: API version
+        - name: MMSI
+          in: query
+          type: string
+          description: Maritime Mobile Service Identity number (9 digits)
+        - name: IMO
+          in: query
+          type: integer
+          description: International Maritime Organization number
+        - name: vessel_name
+          in: query
+          type: string
+        - name: protocol
+          in: query
+          type: string
+        - name: msgtype
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: exportvesseltrack-apikey
+      path: /exportvesseltrack/{apikey}
+      operations:
+      - name: getvesseltrack
+        method: GET
+        description: Get vessel position track
+        inputParameters:
+        - name: apikey
+          in: path
+          type: string
+          required: true
+        - name: v
+          in: query
+          type: integer
+        - name: MMSI
+          in: query
+          type: string
+          required: true
+        - name: fromdate
+          in: query
+          type: string
+          required: true
+          description: Track start time (UTC, ISO 8601)
+        - name: todate
+          in: query
+          type: string
+          required: true
+          description: Track end time (UTC, ISO 8601)
+        - name: protocol
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: getexpectedarrivals-apikey
+      path: /getexpectedarrivals/{apikey}
+      operations:
+      - name: getexpectedarrivals
+        method: GET
+        description: Get expected vessel arrivals at a port
+        inputParameters:
+        - name: apikey
+          in: path
+          type: string
+          required: true
+        - name: portid
+          in: query
+          type: integer
+          required: true
+          description: MarineTraffic port identifier
+        - name: v
+          in: query
+          type: integer
+        - name: fromdate
+          in: query
+          type: string
+        - name: todate
+          in: query
+          type: string
+        - name: protocol
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: getportcalls-apikey
+      path: /getportcalls/{apikey}
+      operations:
+      - name: getportcalls
+        method: GET
+        description: Get port call events
+        inputParameters:
+        - name: apikey
+          in: path
+          type: string
+          required: true
+        - name: portid
+          in: query
+          type: integer
+        - name: MMSI
+          in: query
+          type: string
+        - name: fromdate
+          in: query
+          type: string
+        - name: todate
+          in: query
+          type: string
+        - name: v
+          in: query
+          type: integer
+        - name: protocol
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: getvesselpositions-apikey
+      path: /getvesselpositions/{apikey}
+      operations:
+      - name: getvesselpositions
+        method: GET
+        description: Get vessel positions in area
+        inputParameters:
+        - name: apikey
+          in: path
+          type: string
+          required: true
+        - name: MINLAT
+          in: query
+          type: number
+          required: true
+        - name: MAXLAT
+          in: query
+          type: number
+          required: true
+        - name: MINLON
+          in: query
+          type: number
+          required: true
+        - name: MAXLON
+          in: query
+          type: number
+          required: true
+        - name: SHIPTYPE
+          in: query
+          type: integer
+          description: AIS vessel type code filter
+        - name: v
+          in: query
+          type: integer
+        - name: protocol
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: marinetraffic-rest
+    description: REST adapter for MarineTraffic AIS Vessel Tracking API.
+    resources:
+    - path: /exportvessel/{apikey}
+      name: getvesseldetails
+      operations:
+      - method: GET
+        name: getvesseldetails
+        description: Get vessel details
+        call: marinetraffic.getvesseldetails
+        with:
+          apikey: rest.apikey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /exportvesseltrack/{apikey}
+      name: getvesseltrack
+      operations:
+      - method: GET
+        name: getvesseltrack
+        description: Get vessel position track
+        call: marinetraffic.getvesseltrack
+        with:
+          apikey: rest.apikey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /getexpectedarrivals/{apikey}
+      name: getexpectedarrivals
+      operations:
+      - method: GET
+        name: getexpectedarrivals
+        description: Get expected vessel arrivals at a port
+        call: marinetraffic.getexpectedarrivals
+        with:
+          apikey: rest.apikey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /getportcalls/{apikey}
+      name: getportcalls
+      operations:
+      - method: GET
+        name: getportcalls
+        description: Get port call events
+        call: marinetraffic.getportcalls
+        with:
+          apikey: rest.apikey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /getvesselpositions/{apikey}
+      name: getvesselpositions
+      operations:
+      - method: GET
+        name: getvesselpositions
+        description: Get vessel positions in area
+        call: marinetraffic.getvesselpositions
+        with:
+          apikey: rest.apikey
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: marinetraffic-mcp
+    transport: http
+    description: MCP adapter for MarineTraffic AIS Vessel Tracking API for AI agent use.
+    tools:
+    - name: getvesseldetails
+      description: Get vessel details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marinetraffic.getvesseldetails
+      with:
+        apikey: tools.apikey
+        v: tools.v
+        MMSI: tools.MMSI
+        IMO: tools.IMO
+        vessel_name: tools.vessel_name
+        protocol: tools.protocol
+        msgtype: tools.msgtype
+      inputParameters:
+      - name: apikey
+        type: string
+        description: Your MarineTraffic API key
+        required: true
+      - name: v
+        type: integer
+        description: API version
+      - name: MMSI
+        type: string
+        description: Maritime Mobile Service Identity number (9 digits)
+      - name: IMO
+        type: integer
+        description: International Maritime Organization number
+      - name: vessel_name
+        type: string
+        description: vessel_name
+      - name: protocol
+        type: string
+        description: protocol
+      - name: msgtype
+        type: string
+        description: msgtype
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getvesseltrack
+      description: Get vessel position track
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marinetraffic.getvesseltrack
+      with:
+        apikey: tools.apikey
+        v: tools.v
+        MMSI: tools.MMSI
+        fromdate: tools.fromdate
+        todate: tools.todate
+        protocol: tools.protocol
+      inputParameters:
+      - name: apikey
+        type: string
+        description: apikey
+        required: true
+      - name: v
+        type: integer
+        description: v
+      - name: MMSI
+        type: string
+        description: MMSI
+        required: true
+      - name: fromdate
+        type: string
+        description: Track start time (UTC, ISO 8601)
+        required: true
+      - name: todate
+        type: string
+        description: Track end time (UTC, ISO 8601)
+        required: true
+      - name: protocol
+        type: string
+        description: protocol
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getexpectedarrivals
+      description: Get expected vessel arrivals at a port
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marinetraffic.getexpectedarrivals
+      with:
+        apikey: tools.apikey
+        portid: tools.portid
+        v: tools.v
+        fromdate: tools.fromdate
+        todate: tools.todate
+        protocol: tools.protocol
+      inputParameters:
+      - name: apikey
+        type: string
+        description: apikey
+        required: true
+      - name: portid
+        type: integer
+        description: MarineTraffic port identifier
+        required: true
+      - name: v
+        type: integer
+        description: v
+      - name: fromdate
+        type: string
+        description: fromdate
+      - name: todate
+        type: string
+        description: todate
+      - name: protocol
+        type: string
+        description: protocol
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getportcalls
+      description: Get port call events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marinetraffic.getportcalls
+      with:
+        apikey: tools.apikey
+        portid: tools.portid
+        MMSI: tools.MMSI
+        fromdate: tools.fromdate
+        todate: tools.todate
+        v: tools.v
+        protocol: tools.protocol
+      inputParameters:
+      - name: apikey
+        type: string
+        description: apikey
+        required: true
+      - name: portid
+        type: integer
+        description: portid
+      - name: MMSI
+        type: string
+        description: MMSI
+      - name: fromdate
+        type: string
+        description: fromdate
+      - name: todate
+        type: string
+        description: todate
+      - name: v
+        type: integer
+        description: v
+      - name: protocol
+        type: string
+        description: protocol
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getvesselpositions
+      description: Get vessel positions in area
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marinetraffic.getvesselpositions
+      with:
+        apikey: tools.apikey
+        MINLAT: tools.MINLAT
+        MAXLAT: tools.MAXLAT
+        MINLON: tools.MINLON
+        MAXLON: tools.MAXLON
+        SHIPTYPE: tools.SHIPTYPE
+        v: tools.v
+        protocol: tools.protocol
+      inputParameters:
+      - name: apikey
+        type: string
+        description: apikey
+        required: true
+      - name: MINLAT
+        type: number
+        description: MINLAT
+        required: true
+      - name: MAXLAT
+        type: number
+        description: MAXLAT
+        required: true
+      - name: MINLON
+        type: number
+        description: MINLON
+        required: true
+      - name: MAXLON
+        type: number
+        description: MAXLON
+        required: true
+      - name: SHIPTYPE
+        type: integer
+        description: AIS vessel type code filter
+      - name: v
+        type: integer
+        description: v
+      - name: protocol
+        type: string
+        description: protocol
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    MARINETRAFFIC_TOKEN: MARINETRAFFIC_TOKEN
