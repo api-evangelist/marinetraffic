@@ -4,159 +4,55 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: MarineTraffic
 providerId: marinetraffic
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - AIS
   - Maritime
   - Shipping
   - Vessel Tracking
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: MarineTraffic is now operated by Kpler and the public AIS API services pages redirect to
+  Kpler's Maritime Data Services product page, which does not publish per-tier pricing or per-call rates.
+  Commercial access (API credits, vessel/area-based subscriptions, and enterprise data feeds) is sold
+  via direct sales engagement. The legacy MarineTraffic API offered credit-based packs for endpoints
+  such as PS01 (Vessel Positions), VI01 (Vessel Information), and EV01 (Port Calls), but current pricing
+  must be obtained from Kpler. This artifact remains a scaffold until per-call or per-credit pricing is
+  recovered from the vendor.
+notes: |
+  No public pricing page is available. MarineTraffic was acquired by Kpler; the historical
+  www.marinetraffic.com/en/ais-api-services URL now 301-redirects to www.kpler.com/product/maritime/data-services
+  which lists product capabilities only and routes pricing requests through "Contact Sales".
+  Set reconciled to true once a quoted credit pack or per-call rate is obtained.
+sources:
+  - https://www.marinetraffic.com/en/p/api-services
+  - https://www.kpler.com/product/maritime/data-services
+  - https://servicedocs.marinetraffic.com/
 plans:
-  - id: marinetraffic-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the MarineTraffic API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://services.marinetraffic.com/api
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://services.marinetraffic.com/api
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: MarineTraffic AIS Vessel Tracking API
-      - name: MarineTraffic Real-time Events API
-      - name: MarineTraffic Predictive Events API
-      - name: MarineTraffic Past Events API
-      - name: MarineTraffic Ship Database API
-      - name: MarineTraffic AIS Vessel Tracking API
-  - id: marinetraffic-pro
-    name: Professional
-    type: paid
-    description: Production tier for MarineTraffic. Provides higher quotas, priority support, and access
-      to the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://services.marinetraffic.com/api
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://services.marinetraffic.com/api
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://services.marinetraffic.com/api
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: MarineTraffic AIS Vessel Tracking API
-      - name: MarineTraffic Real-time Events API
-      - name: MarineTraffic Predictive Events API
-      - name: MarineTraffic Past Events API
-      - name: MarineTraffic Ship Database API
-      - name: MarineTraffic AIS Vessel Tracking API
-  - id: marinetraffic-enterprise
-    name: Enterprise
+  - id: marinetraffic-contact-sales
+    name: Contact Sales
     type: enterprise
-    description: Custom-negotiated tier for MarineTraffic. Includes dedicated capacity, contractual SLAs,
-      security review, data residency options, and named technical account management.
+    description: All commercial access to the MarineTraffic API surface (now operated by Kpler) is negotiated
+      through direct sales. Prepaid credit packs and subscription tiers existed historically but current
+      pricing is not published.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://services.marinetraffic.com/api
+      - label: API Access
+        description: Request volume, included endpoints, and credit pricing are quoted per engagement.
+        name: api_access
+        type: tiered
+        metric: varies
+        limit: 'see vendor'
+        timeFrame: usage
+        geo: global
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://services.marinetraffic.com/api
-        unit: 1
-        price: custom
+        price: 'contact sales'
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: MarineTraffic AIS Vessel Tracking API
-      - name: MarineTraffic Real-time Events API
-      - name: MarineTraffic Predictive Events API
-      - name: MarineTraffic Past Events API
-      - name: MarineTraffic Ship Database API
-      - name: MarineTraffic AIS Vessel Tracking API
+      - name: AIS Vessel Tracking
+      - name: Real-time Events (Port Calls, Bunkering)
+      - name: Predictive Events (ETA / Voyage Forecasting)
+      - name: Past Events / Historical Movements
+      - name: Ship Database
+      - name: Dedicated Account Management (Enterprise)
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
