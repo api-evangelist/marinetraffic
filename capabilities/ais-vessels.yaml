@@ -1,0 +1,115 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: MarineTraffic AIS Vessel Tracking API — Vessels
+  description: 'MarineTraffic AIS Vessel Tracking API — Vessels. 1 operations. Lead operation: Get vessel details. Self-contained
+    Naftiko capability covering one Marinetraffic business surface.'
+  tags:
+  - Marinetraffic
+  - Vessels
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MARINETRAFFIC_API_KEY: MARINETRAFFIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ais-vessels
+    baseUri: https://services.marinetraffic.com/api
+    description: MarineTraffic AIS Vessel Tracking API — Vessels business capability. Self-contained, no shared references.
+    resources:
+    - name: exportvessel-apikey
+      path: /exportvessel/{apikey}
+      operations:
+      - name: getvesseldetails
+        method: GET
+        description: Get vessel details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apikey
+          in: path
+          type: string
+          description: Your MarineTraffic API key
+          required: true
+        - name: v
+          in: query
+          type: integer
+          description: API version
+        - name: MMSI
+          in: query
+          type: string
+          description: Maritime Mobile Service Identity number (9 digits)
+        - name: IMO
+          in: query
+          type: integer
+          description: International Maritime Organization number
+        - name: vessel_name
+          in: query
+          type: string
+        - name: protocol
+          in: query
+          type: string
+        - name: msgtype
+          in: query
+          type: string
+    authentication:
+      type: apikey
+      key: apikey
+      value: '{{env.MARINETRAFFIC_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: ais-vessels-rest
+    port: 8080
+    description: REST adapter for MarineTraffic AIS Vessel Tracking API — Vessels. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/exportvessel/{apikey}
+      name: exportvessel-apikey
+      description: REST surface for exportvessel-apikey.
+      operations:
+      - method: GET
+        name: getvesseldetails
+        description: Get vessel details
+        call: ais-vessels.getvesseldetails
+        with:
+          apikey: rest.apikey
+          v: rest.v
+          MMSI: rest.MMSI
+          IMO: rest.IMO
+          vessel_name: rest.vessel_name
+          protocol: rest.protocol
+          msgtype: rest.msgtype
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ais-vessels-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for MarineTraffic AIS Vessel Tracking API — Vessels. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-vessel-details
+      description: Get vessel details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ais-vessels.getvesseldetails
+      with:
+        apikey: tools.apikey
+        v: tools.v
+        MMSI: tools.MMSI
+        IMO: tools.IMO
+        vessel_name: tools.vessel_name
+        protocol: tools.protocol
+        msgtype: tools.msgtype
+      outputParameters:
+      - type: object
+        mapping: $.
