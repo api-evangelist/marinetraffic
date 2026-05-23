@@ -1,0 +1,117 @@
+{
+  "provider": "MarineTraffic",
+  "providerId": "marinetraffic",
+  "kind": "json-structure",
+  "description": "Structural overview of the MarineTraffic API surface; extracted from openapi/.",
+  "schemaCount": 10,
+  "operationCount": 5,
+  "schemas": [
+    {
+      "name": "Vessel",
+      "type": "object",
+      "propertyCount": 27,
+      "required": []
+    },
+    {
+      "name": "VesselResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "VesselTrackPoint",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "VesselTrackResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "PortCall",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "PortCallsResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ExpectedArrival",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "ExpectedArrivalsResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "VesselPositionsResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/exportvessel/{apikey}",
+      "operationId": "getVesselDetails",
+      "summary": "Get vessel details",
+      "tags": [
+        "Vessels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/exportvesseltrack/{apikey}",
+      "operationId": "getVesselTrack",
+      "summary": "Get vessel position track",
+      "tags": [
+        "Vessel Tracking"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/getexpectedarrivals/{apikey}",
+      "operationId": "getExpectedArrivals",
+      "summary": "Get expected vessel arrivals at a port",
+      "tags": [
+        "Port Operations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/getportcalls/{apikey}",
+      "operationId": "getPortCalls",
+      "summary": "Get port call events",
+      "tags": [
+        "Port Operations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/getvesselpositions/{apikey}",
+      "operationId": "getVesselPositions",
+      "summary": "Get vessel positions in area",
+      "tags": [
+        "Vessel Tracking"
+      ]
+    }
+  ]
+}

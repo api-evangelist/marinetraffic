@@ -1,0 +1,11 @@
+name: MarineTraffic Domain Vocabulary
+provider: MarineTraffic
+providerId: marinetraffic
+description: Tag-derived vocabulary for the MarineTraffic API surface; sourced from openapi/ tags.
+terms:
+- term: Port Operations
+  description: Port calls, arrivals, and departures
+- term: Vessel Tracking
+  description: Real-time and historical vessel positions
+- term: Vessels
+  description: Vessel static data and characteristics

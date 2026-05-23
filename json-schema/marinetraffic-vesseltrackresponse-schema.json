@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VesselTrackResponse",
+  "title": "VesselTrackResponse",
+  "type": "object",
+  "properties": {
+    "DATA": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/VesselTrackPoint"
+      }
+    }
+  }
+}

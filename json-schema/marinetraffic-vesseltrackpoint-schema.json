@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VesselTrackPoint",
+  "title": "VesselTrackPoint",
+  "type": "object",
+  "properties": {
+    "MMSI": {
+      "type": "string"
+    },
+    "LAT": {
+      "type": "number",
+      "format": "double"
+    },
+    "LON": {
+      "type": "number",
+      "format": "double"
+    },
+    "SPEED": {
+      "type": "number"
+    },
+    "HEADING": {
+      "type": "integer"
+    },
+    "COURSE": {
+      "type": "number"
+    },
+    "STATUS": {
+      "type": "integer"
+    },
+    "TIMESTAMP": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

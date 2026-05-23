@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PortCall",
+  "title": "PortCall",
+  "type": "object",
+  "properties": {
+    "PORTCALL_ID": {
+      "type": "integer"
+    },
+    "MMSI": {
+      "type": "string"
+    },
+    "SHIP_ID": {
+      "type": "integer"
+    },
+    "VESSEL_NAME": {
+      "type": "string"
+    },
+    "PORT_ID": {
+      "type": "integer"
+    },
+    "PORT_NAME": {
+      "type": "string"
+    },
+    "UNLOCODE": {
+      "type": "string",
+      "description": "UN/LOCODE port identifier"
+    },
+    "ARRIVAL": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "DEPARTURE": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "DURATION_HOURS": {
+      "type": "number"
+    },
+    "MAX_DRAUGHT": {
+      "type": "number"
+    }
+  }
+}
