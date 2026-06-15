@@ -1,0 +1,960 @@
+{
+  "item": [
+    {
+      "id": "bf0023e0-07ec-44e5-abec-32bfa4952e2c",
+      "name": "Port Operations",
+      "description": {
+        "content": "Port calls, arrivals, and departures",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "00d8d08a-b51e-44d1-a83a-58a4aea36fbb",
+          "name": "Get expected vessel arrivals at a port",
+          "request": {
+            "name": "Get expected vessel arrivals at a port",
+            "description": {
+              "content": "Retrieve vessels expected to arrive at a specific port based on voyage destination data and ETA information from AIS messages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getexpectedarrivals",
+                ":apikey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "portid",
+                  "value": "<integer>",
+                  "description": "(Required) MarineTraffic port identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "v",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromdate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "todate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "jsono"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ca25c8c-dc38-404e-bb29-4005fbadb74e",
+              "name": "Expected arrivals",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getexpectedarrivals",
+                    ":apikey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "portid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "v",
+                      "value": "1"
+                    },
+                    {
+                      "key": "fromdate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "todate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "jsono"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apikey",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"DATA\": [\n    {\n      \"MMSI\": \"string\",\n      \"VESSEL_NAME\": \"string\",\n      \"SHIP_ID\": 7252,\n      \"PORT_ID\": 3739,\n      \"PORT_NAME\": \"string\",\n      \"EXPECTED_ARRIVAL\": \"2004-12-10T02:21:32.445Z\",\n      \"CURRENT_LAT\": 7821.191933808365,\n      \"CURRENT_LON\": 531.4480902552476,\n      \"DISTANCE_REMAINING\": 7611.549029359744\n    },\n    {\n      \"MMSI\": \"string\",\n      \"VESSEL_NAME\": \"string\",\n      \"SHIP_ID\": 5701,\n      \"PORT_ID\": 9421,\n      \"PORT_NAME\": \"string\",\n      \"EXPECTED_ARRIVAL\": \"1969-09-04T01:48:52.372Z\",\n      \"CURRENT_LAT\": 9284.621675085587,\n      \"CURRENT_LON\": 4220.319069294034,\n      \"DISTANCE_REMAINING\": 1999.2778374793752\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a857bc53-9c2c-4dc1-b6c4-d5a3f71a462c",
+          "name": "Get port call events",
+          "request": {
+            "name": "Get port call events",
+            "description": {
+              "content": "Retrieve historical and live port call events (arrivals, departures) for a port or vessel within a given time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getportcalls",
+                ":apikey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "portid",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "MMSI",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromdate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "todate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "v",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "jsono"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e5d48c3-78d7-49bb-bd5f-d2d58971f71e",
+              "name": "Port call events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getportcalls",
+                    ":apikey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "portid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MMSI",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromdate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "todate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "v",
+                      "value": "1"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "jsono"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apikey",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"DATA\": [\n    {\n      \"PORTCALL_ID\": 6760,\n      \"MMSI\": \"string\",\n      \"SHIP_ID\": 5408,\n      \"VESSEL_NAME\": \"string\",\n      \"PORT_ID\": 7950,\n      \"PORT_NAME\": \"string\",\n      \"UNLOCODE\": \"string\",\n      \"ARRIVAL\": \"2009-10-20T11:51:19.045Z\",\n      \"DEPARTURE\": \"2017-12-30T01:22:31.144Z\",\n      \"DURATION_HOURS\": 2344.183762681591,\n      \"MAX_DRAUGHT\": 7868.9196298663655\n    },\n    {\n      \"PORTCALL_ID\": 8327,\n      \"MMSI\": \"string\",\n      \"SHIP_ID\": 3752,\n      \"VESSEL_NAME\": \"string\",\n      \"PORT_ID\": 7376,\n      \"PORT_NAME\": \"string\",\n      \"UNLOCODE\": \"string\",\n      \"ARRIVAL\": \"1960-09-16T14:27:35.511Z\",\n      \"DEPARTURE\": \"1956-03-09T12:51:50.949Z\",\n      \"DURATION_HOURS\": 1237.826564725486,\n      \"MAX_DRAUGHT\": 1926.9004712168337\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f625bb22-711f-41d0-a1c9-ba5eaaeaa0eb",
+      "name": "Vessel Tracking",
+      "description": {
+        "content": "Real-time and historical vessel positions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "555a7d2c-b9cf-4089-b280-5febe9281a51",
+          "name": "Get vessel position track",
+          "request": {
+            "name": "Get vessel position track",
+            "description": {
+              "content": "Retrieve the position history (track) of a vessel over a specified time period. Returns a sequence of AIS position reports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exportvesseltrack",
+                ":apikey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "v",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "MMSI",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "fromdate",
+                  "value": "<dateTime>",
+                  "description": "(Required) Track start time (UTC, ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "todate",
+                  "value": "<dateTime>",
+                  "description": "(Required) Track end time (UTC, ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "jsono"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2eb88729-2b15-4584-be48-4324d55b894b",
+              "name": "Vessel position track",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exportvesseltrack",
+                    ":apikey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "v",
+                      "value": "1"
+                    },
+                    {
+                      "key": "MMSI",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromdate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "todate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "jsono"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apikey",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"DATA\": [\n    {\n      \"MMSI\": \"string\",\n      \"LAT\": 4954.17060349267,\n      \"LON\": 9694.634575590853,\n      \"SPEED\": 3230.612283714455,\n      \"HEADING\": 6704,\n      \"COURSE\": 5359.951830569963,\n      \"STATUS\": 1585,\n      \"TIMESTAMP\": \"1979-04-18T01:37:27.838Z\"\n    },\n    {\n      \"MMSI\": \"string\",\n      \"LAT\": 675.0903777334261,\n      \"LON\": 3592.1226579728814,\n      \"SPEED\": 3099.4424179724,\n      \"HEADING\": 4608,\n      \"COURSE\": 5918.7165437629865,\n      \"STATUS\": 507,\n      \"TIMESTAMP\": \"1995-01-17T02:55:51.658Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb5f21ae-e874-462a-861f-46c381b9d037",
+          "name": "Get vessel positions in area",
+          "request": {
+            "name": "Get vessel positions in area",
+            "description": {
+              "content": "Retrieve real-time positions of all vessels currently within a specified geographic bounding box.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getvesselpositions",
+                ":apikey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "MINLAT",
+                  "value": "<double>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "MAXLAT",
+                  "value": "<double>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "MINLON",
+                  "value": "<double>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "MAXLON",
+                  "value": "<double>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "SHIPTYPE",
+                  "value": "<integer>",
+                  "description": "AIS vessel type code filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "v",
+                  "value": "8"
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "jsono"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b122e50-5ee2-428d-b4e5-feaead9de6ca",
+              "name": "Vessel positions in area",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getvesselpositions",
+                    ":apikey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MINLAT",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "MAXLAT",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "MINLON",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "MAXLON",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "SHIPTYPE",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "v",
+                      "value": "8"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "jsono"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apikey",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"DATA\": [\n    {\n      \"MMSI\": \"210373098\",\n      \"IMO\": 6734,\n      \"SHIP_ID\": 1605,\n      \"LAT\": 6063.816113981404,\n      \"LON\": 5036.631734963116,\n      \"SPEED\": 290.3077809186738,\n      \"HEADING\": 4446,\n      \"COURSE\": 3863.682141088113,\n      \"STATUS\": 835,\n      \"TIMESTAMP\": \"1955-02-18T21:57:06.242Z\",\n      \"DSRC\": \"TER\",\n      \"VESSEL_NAME\": \"string\",\n      \"CALLSIGN\": \"string\",\n      \"FLAG\": \"string\",\n      \"SHIPTYPE\": 4896,\n      \"CARGO\": 7653,\n      \"CURRENT_PORT\": \"string\",\n      \"LAST_PORT\": \"string\",\n      \"NEXT_PORT_NAME\": \"string\",\n      \"ETA\": \"1977-04-04T09:36:23.011Z\",\n      \"DESTINATION\": \"string\",\n      \"LENGTH\": 3778,\n      \"WIDTH\": 908,\n      \"DRAUGHT\": 7765.712183419735,\n      \"GT\": 2001,\n      \"DWT\": 85,\n      \"YEAR_BUILT\": 4390\n    },\n    {\n      \"MMSI\": \"147070402\",\n      \"IMO\": 9801,\n      \"SHIP_ID\": 9429,\n      \"LAT\": 8861.984975786308,\n      \"LON\": 6508.025140400679,\n      \"SPEED\": 4272.65996712608,\n      \"HEADING\": 7046,\n      \"COURSE\": 1698.0558886965657,\n      \"STATUS\": 5217,\n      \"TIMESTAMP\": \"1984-07-11T21:18:27.127Z\",\n      \"DSRC\": \"TER\",\n      \"VESSEL_NAME\": \"string\",\n      \"CALLSIGN\": \"string\",\n      \"FLAG\": \"string\",\n      \"SHIPTYPE\": 7659,\n      \"CARGO\": 2834,\n      \"CURRENT_PORT\": \"string\",\n      \"LAST_PORT\": \"string\",\n      \"NEXT_PORT_NAME\": \"string\",\n      \"ETA\": \"1997-10-19T18:35:32.207Z\",\n      \"DESTINATION\": \"string\",\n      \"LENGTH\": 3132,\n      \"WIDTH\": 5623,\n      \"DRAUGHT\": 2655.1127253777086,\n      \"GT\": 7211,\n      \"DWT\": 500,\n      \"YEAR_BUILT\": 7668\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "babe0281-f711-4daf-a772-fafbf8d18608",
+      "name": "Vessels",
+      "description": {
+        "content": "Vessel static data and characteristics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e1edf677-0961-4095-a02f-b32ae2bc0d61",
+          "name": "Get vessel details",
+          "request": {
+            "name": "Get vessel details",
+            "description": {
+              "content": "Retrieve vessel characteristics and current static data from the MarineTraffic ship database including name, flag, type, dimensions, and registration details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exportvessel",
+                ":apikey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "v",
+                  "value": "4",
+                  "description": "API version"
+                },
+                {
+                  "disabled": false,
+                  "key": "MMSI",
+                  "value": "<string>",
+                  "description": "Maritime Mobile Service Identity number (9 digits)"
+                },
+                {
+                  "disabled": false,
+                  "key": "IMO",
+                  "value": "<integer>",
+                  "description": "International Maritime Organization number"
+                },
+                {
+                  "disabled": false,
+                  "key": "vessel_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "jsono"
+                },
+                {
+                  "disabled": false,
+                  "key": "msgtype",
+                  "value": "simple"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) Your MarineTraffic API key"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb601e6c-62e6-4991-bb96-7ee8299c9fb9",
+              "name": "Vessel details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exportvessel",
+                    ":apikey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "v",
+                      "value": "4"
+                    },
+                    {
+                      "key": "MMSI",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IMO",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "vessel_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "jsono"
+                    },
+                    {
+                      "key": "msgtype",
+                      "value": "simple"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apikey",
+                      "description": "(Required) Your MarineTraffic API key"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"DATA\": [\n    {\n      \"MMSI\": \"210373098\",\n      \"IMO\": 6734,\n      \"SHIP_ID\": 1605,\n      \"LAT\": 6063.816113981404,\n      \"LON\": 5036.631734963116,\n      \"SPEED\": 290.3077809186738,\n      \"HEADING\": 4446,\n      \"COURSE\": 3863.682141088113,\n      \"STATUS\": 835,\n      \"TIMESTAMP\": \"1955-02-18T21:57:06.242Z\",\n      \"DSRC\": \"TER\",\n      \"VESSEL_NAME\": \"string\",\n      \"CALLSIGN\": \"string\",\n      \"FLAG\": \"string\",\n      \"SHIPTYPE\": 4896,\n      \"CARGO\": 7653,\n      \"CURRENT_PORT\": \"string\",\n      \"LAST_PORT\": \"string\",\n      \"NEXT_PORT_NAME\": \"string\",\n      \"ETA\": \"1977-04-04T09:36:23.011Z\",\n      \"DESTINATION\": \"string\",\n      \"LENGTH\": 3778,\n      \"WIDTH\": 908,\n      \"DRAUGHT\": 7765.712183419735,\n      \"GT\": 2001,\n      \"DWT\": 85,\n      \"YEAR_BUILT\": 4390\n    },\n    {\n      \"MMSI\": \"147070402\",\n      \"IMO\": 9801,\n      \"SHIP_ID\": 9429,\n      \"LAT\": 8861.984975786308,\n      \"LON\": 6508.025140400679,\n      \"SPEED\": 4272.65996712608,\n      \"HEADING\": 7046,\n      \"COURSE\": 1698.0558886965657,\n      \"STATUS\": 5217,\n      \"TIMESTAMP\": \"1984-07-11T21:18:27.127Z\",\n      \"DSRC\": \"TER\",\n      \"VESSEL_NAME\": \"string\",\n      \"CALLSIGN\": \"string\",\n      \"FLAG\": \"string\",\n      \"SHIPTYPE\": 7659,\n      \"CARGO\": 2834,\n      \"CURRENT_PORT\": \"string\",\n      \"LAST_PORT\": \"string\",\n      \"NEXT_PORT_NAME\": \"string\",\n      \"ETA\": \"1997-10-19T18:35:32.207Z\",\n      \"DESTINATION\": \"string\",\n      \"LENGTH\": 3132,\n      \"WIDTH\": 5623,\n      \"DRAUGHT\": 2655.1127253777086,\n      \"GT\": 7211,\n      \"DWT\": 500,\n      \"YEAR_BUILT\": 7668\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1e6dd3f-1bb9-463e-b56c-44e25d614362",
+              "name": "Invalid API key or subscription does not include this service",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exportvessel",
+                    ":apikey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "v",
+                      "value": "4"
+                    },
+                    {
+                      "key": "MMSI",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IMO",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "vessel_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "jsono"
+                    },
+                    {
+                      "key": "msgtype",
+                      "value": "simple"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apikey",
+                      "description": "(Required) Your MarineTraffic API key"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": 638,\n      \"description\": \"string\"\n    },\n    {\n      \"code\": 4262,\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bb471ea-87d4-4fff-b643-6219bbd11a6d",
+              "name": "API credits exhausted or rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exportvessel",
+                    ":apikey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "v",
+                      "value": "4"
+                    },
+                    {
+                      "key": "MMSI",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IMO",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "vessel_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "jsono"
+                    },
+                    {
+                      "key": "msgtype",
+                      "value": "simple"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apikey",
+                      "description": "(Required) Your MarineTraffic API key"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": 638,\n      \"description\": \"string\"\n    },\n    {\n      \"code\": 4262,\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://services.marinetraffic.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8c1c771e-676d-4cee-82be-e9e94417f28b",
+    "name": "MarineTraffic AIS Vessel Tracking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "MarineTraffic AIS API provides real-time vessel position data from over 13,000 AIS receivers globally. Returns vessel positions, speeds, headings, and voyage information for fleet monitoring, port operations, and supply chain visibility.\n\nContact Support:\n Name: MarineTraffic / Kpler Support",
+      "type": "text/plain"
+    }
+  }
+}

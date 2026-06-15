@@ -1,0 +1,285 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MarineTraffic AIS Vessel Tracking API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vessels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vessel details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.marinetraffic.com/api/exportvessel/:apikey",
+            "params": [
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "path",
+                "description": "Your MarineTraffic API key"
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query",
+                "description": "API version"
+              },
+              {
+                "name": "MMSI",
+                "value": "",
+                "type": "query",
+                "description": "Maritime Mobile Service Identity number (9 digits)"
+              },
+              {
+                "name": "IMO",
+                "value": "",
+                "type": "query",
+                "description": "International Maritime Organization number"
+              },
+              {
+                "name": "vessel_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "msgtype",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve vessel characteristics and current static data from the MarineTraffic ship database including name, flag, type, dimensions, and registration details."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Vessel Tracking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vessel position track",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.marinetraffic.com/api/exportvesseltrack/:apikey",
+            "params": [
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "MMSI",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromdate",
+                "value": "",
+                "type": "query",
+                "description": "Track start time (UTC, ISO 8601)"
+              },
+              {
+                "name": "todate",
+                "value": "",
+                "type": "query",
+                "description": "Track end time (UTC, ISO 8601)"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the position history (track) of a vessel over a specified time period. Returns a sequence of AIS position reports."
+        },
+        {
+          "info": {
+            "name": "Get vessel positions in area",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.marinetraffic.com/api/getvesselpositions/:apikey",
+            "params": [
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "MINLAT",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "MAXLAT",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "MINLON",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "MAXLON",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "SHIPTYPE",
+                "value": "",
+                "type": "query",
+                "description": "AIS vessel type code filter"
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve real-time positions of all vessels currently within a specified geographic bounding box."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Port Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get expected vessel arrivals at a port",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.marinetraffic.com/api/getexpectedarrivals/:apikey",
+            "params": [
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "portid",
+                "value": "",
+                "type": "query",
+                "description": "MarineTraffic port identifier"
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "todate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve vessels expected to arrive at a specific port based on voyage destination data and ETA information from AIS messages."
+        },
+        {
+          "info": {
+            "name": "Get port call events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.marinetraffic.com/api/getportcalls/:apikey",
+            "params": [
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "portid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "MMSI",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "todate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve historical and live port call events (arrivals, departures) for a port or vessel within a given time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
