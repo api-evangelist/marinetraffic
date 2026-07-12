@@ -125,6 +125,10 @@ apis:
       positions, speeds, headings, destinations, and ETAs. The REST API returns XML-formatted AIS data for fleet
       monitoring, port operations, and supply chain visibility.
 common:
+  - type: DomainSecurity
+    url: security/marinetraffic-domain-security.yml
+  - type: Authentication
+    url: authentication/marinetraffic-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/marinetraffic
   - type: LinkedIn
