@@ -125,6 +125,8 @@ apis:
       positions, speeds, headings, destinations, and ETAs. The REST API returns XML-formatted AIS data for fleet
       monitoring, port operations, and supply chain visibility.
 common:
+  - type: AgenticAccess
+    url: agentic-access/marinetraffic-agentic-access.yml
   - type: DomainSecurity
     url: security/marinetraffic-domain-security.yml
   - type: Authentication
