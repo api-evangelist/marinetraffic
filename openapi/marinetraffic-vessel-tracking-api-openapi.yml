@@ -1,0 +1,277 @@
+openapi: 3.1.0
+info:
+  title: MarineTraffic AIS Port Operations Vessel Tracking API
+  description: MarineTraffic AIS API provides real-time vessel position data from over 13,000 AIS receivers globally. Returns vessel positions, speeds, headings, and voyage information for fleet monitoring, port operations, and supply chain visibility.
+  version: 1.0.0
+  contact:
+    name: MarineTraffic / Kpler Support
+    url: https://www.kpler.com/contact
+  license:
+    name: Proprietary
+    url: https://www.kpler.com/company/terms-of-use
+servers:
+- url: https://services.marinetraffic.com/api
+  description: MarineTraffic REST API
+security:
+- APIKey: []
+tags:
+- name: Vessel Tracking
+  description: Real-time and historical vessel positions
+paths:
+  /exportvesseltrack/{apikey}:
+    get:
+      operationId: getVesselTrack
+      summary: Get vessel position track
+      description: Retrieve the position history (track) of a vessel over a specified time period. Returns a sequence of AIS position reports.
+      tags:
+      - Vessel Tracking
+      parameters:
+      - name: apikey
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: v
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: MMSI
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: fromdate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+        description: Track start time (UTC, ISO 8601)
+      - name: todate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+        description: Track end time (UTC, ISO 8601)
+      - name: protocol
+        in: query
+        schema:
+          type: string
+          enum:
+          - jsono
+          - xml
+          - csv
+          default: jsono
+      responses:
+        '200':
+          description: Vessel position track
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VesselTrackResponse'
+  /getvesselpositions/{apikey}:
+    get:
+      operationId: getVesselPositions
+      summary: Get vessel positions in area
+      description: Retrieve real-time positions of all vessels currently within a specified geographic bounding box.
+      tags:
+      - Vessel Tracking
+      parameters:
+      - name: apikey
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: MINLAT
+        in: query
+        required: true
+        schema:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+      - name: MAXLAT
+        in: query
+        required: true
+        schema:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+      - name: MINLON
+        in: query
+        required: true
+        schema:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+      - name: MAXLON
+        in: query
+        required: true
+        schema:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+      - name: SHIPTYPE
+        in: query
+        schema:
+          type: integer
+        description: AIS vessel type code filter
+      - name: v
+        in: query
+        schema:
+          type: integer
+          default: 8
+      - name: protocol
+        in: query
+        schema:
+          type: string
+          enum:
+          - jsono
+          - xml
+          - csv
+          default: jsono
+      responses:
+        '200':
+          description: Vessel positions in area
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VesselPositionsResponse'
+components:
+  schemas:
+    Vessel:
+      type: object
+      description: Vessel static and voyage data
+      properties:
+        MMSI:
+          type: string
+          description: Maritime Mobile Service Identity
+          pattern: ^[0-9]{9}$
+        IMO:
+          type: integer
+          description: International Maritime Organization number
+        SHIP_ID:
+          type: integer
+          description: MarineTraffic internal vessel ID
+        LAT:
+          type: number
+          format: double
+          description: Last known latitude (WGS84)
+        LON:
+          type: number
+          format: double
+          description: Last known longitude (WGS84)
+        SPEED:
+          type: number
+          description: Speed over ground in knots (× 10)
+        HEADING:
+          type: integer
+          description: True heading in degrees (0-359)
+        COURSE:
+          type: number
+          description: Course over ground in degrees
+        STATUS:
+          type: integer
+          description: AIS navigational status code
+        TIMESTAMP:
+          type: string
+          format: date-time
+          description: UTC timestamp of last position report
+        DSRC:
+          type: string
+          enum:
+          - TER
+          - SAT
+          description: Data source - terrestrial or satellite AIS
+        VESSEL_NAME:
+          type: string
+        CALLSIGN:
+          type: string
+        FLAG:
+          type: string
+          description: ISO 3166-1 alpha-2 flag state code
+        SHIPTYPE:
+          type: integer
+          description: AIS vessel type code
+        CARGO:
+          type: integer
+          description: Cargo type code
+        CURRENT_PORT:
+          type: string
+        LAST_PORT:
+          type: string
+        NEXT_PORT_NAME:
+          type: string
+        ETA:
+          type: string
+          format: date-time
+          description: Estimated time of arrival at destination
+        DESTINATION:
+          type: string
+        LENGTH:
+          type: integer
+          description: Vessel length in meters
+        WIDTH:
+          type: integer
+          description: Vessel beam/width in meters
+        DRAUGHT:
+          type: number
+          description: Current draught in meters
+        GT:
+          type: integer
+          description: Gross tonnage
+        DWT:
+          type: integer
+          description: Deadweight tonnage
+        YEAR_BUILT:
+          type: integer
+    VesselPositionsResponse:
+      type: object
+      properties:
+        DATA:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vessel'
+    VesselTrackResponse:
+      type: object
+      properties:
+        DATA:
+          type: array
+          items:
+            $ref: '#/components/schemas/VesselTrackPoint'
+    VesselTrackPoint:
+      type: object
+      properties:
+        MMSI:
+          type: string
+        LAT:
+          type: number
+          format: double
+        LON:
+          type: number
+          format: double
+        SPEED:
+          type: number
+        HEADING:
+          type: integer
+        COURSE:
+          type: number
+        STATUS:
+          type: integer
+        TIMESTAMP:
+          type: string
+          format: date-time
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      in: query
+      name: apikey
+      description: MarineTraffic API key provided in the URL path for most endpoints
+externalDocs:
+  description: MarineTraffic API Documentation
+  url: https://www.kpler.com/product/maritime/data-services

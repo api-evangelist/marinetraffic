@@ -1,0 +1,196 @@
+openapi: 3.1.0
+info:
+  title: MarineTraffic AIS Vessel Tracking Port Operations API
+  description: MarineTraffic AIS API provides real-time vessel position data from over 13,000 AIS receivers globally. Returns vessel positions, speeds, headings, and voyage information for fleet monitoring, port operations, and supply chain visibility.
+  version: 1.0.0
+  contact:
+    name: MarineTraffic / Kpler Support
+    url: https://www.kpler.com/contact
+  license:
+    name: Proprietary
+    url: https://www.kpler.com/company/terms-of-use
+servers:
+- url: https://services.marinetraffic.com/api
+  description: MarineTraffic REST API
+security:
+- APIKey: []
+tags:
+- name: Port Operations
+  description: Port calls, arrivals, and departures
+paths:
+  /getexpectedarrivals/{apikey}:
+    get:
+      operationId: getExpectedArrivals
+      summary: Get expected vessel arrivals at a port
+      description: Retrieve vessels expected to arrive at a specific port based on voyage destination data and ETA information from AIS messages.
+      tags:
+      - Port Operations
+      parameters:
+      - name: apikey
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: portid
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: MarineTraffic port identifier
+      - name: v
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: fromdate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: todate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: protocol
+        in: query
+        schema:
+          type: string
+          enum:
+          - jsono
+          - xml
+          default: jsono
+      responses:
+        '200':
+          description: Expected arrivals
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpectedArrivalsResponse'
+  /getportcalls/{apikey}:
+    get:
+      operationId: getPortCalls
+      summary: Get port call events
+      description: Retrieve historical and live port call events (arrivals, departures) for a port or vessel within a given time range.
+      tags:
+      - Port Operations
+      parameters:
+      - name: apikey
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: portid
+        in: query
+        schema:
+          type: integer
+      - name: MMSI
+        in: query
+        schema:
+          type: string
+      - name: fromdate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: todate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: v
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: protocol
+        in: query
+        schema:
+          type: string
+          enum:
+          - jsono
+          - xml
+          default: jsono
+      responses:
+        '200':
+          description: Port call events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortCallsResponse'
+components:
+  schemas:
+    ExpectedArrivalsResponse:
+      type: object
+      properties:
+        DATA:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpectedArrival'
+    ExpectedArrival:
+      type: object
+      properties:
+        MMSI:
+          type: string
+        VESSEL_NAME:
+          type: string
+        SHIP_ID:
+          type: integer
+        PORT_ID:
+          type: integer
+        PORT_NAME:
+          type: string
+        EXPECTED_ARRIVAL:
+          type: string
+          format: date-time
+        CURRENT_LAT:
+          type: number
+        CURRENT_LON:
+          type: number
+        DISTANCE_REMAINING:
+          type: number
+          description: Distance to port in nautical miles
+    PortCall:
+      type: object
+      properties:
+        PORTCALL_ID:
+          type: integer
+        MMSI:
+          type: string
+        SHIP_ID:
+          type: integer
+        VESSEL_NAME:
+          type: string
+        PORT_ID:
+          type: integer
+        PORT_NAME:
+          type: string
+        UNLOCODE:
+          type: string
+          description: UN/LOCODE port identifier
+        ARRIVAL:
+          type: string
+          format: date-time
+        DEPARTURE:
+          type: string
+          format: date-time
+        DURATION_HOURS:
+          type: number
+        MAX_DRAUGHT:
+          type: number
+    PortCallsResponse:
+      type: object
+      properties:
+        DATA:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortCall'
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      in: query
+      name: apikey
+      description: MarineTraffic API key provided in the URL path for most endpoints
+externalDocs:
+  description: MarineTraffic API Documentation
+  url: https://www.kpler.com/product/maritime/data-services

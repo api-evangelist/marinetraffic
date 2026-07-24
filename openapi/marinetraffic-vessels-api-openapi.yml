@@ -1,0 +1,215 @@
+openapi: 3.1.0
+info:
+  title: MarineTraffic AIS Vessel Tracking Port Operations Vessels API
+  description: MarineTraffic AIS API provides real-time vessel position data from over 13,000 AIS receivers globally. Returns vessel positions, speeds, headings, and voyage information for fleet monitoring, port operations, and supply chain visibility.
+  version: 1.0.0
+  contact:
+    name: MarineTraffic / Kpler Support
+    url: https://www.kpler.com/contact
+  license:
+    name: Proprietary
+    url: https://www.kpler.com/company/terms-of-use
+servers:
+- url: https://services.marinetraffic.com/api
+  description: MarineTraffic REST API
+security:
+- APIKey: []
+tags:
+- name: Vessels
+  description: Vessel static data and characteristics
+paths:
+  /exportvessel/{apikey}:
+    get:
+      operationId: getVesselDetails
+      summary: Get vessel details
+      description: Retrieve vessel characteristics and current static data from the MarineTraffic ship database including name, flag, type, dimensions, and registration details.
+      tags:
+      - Vessels
+      parameters:
+      - name: apikey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Your MarineTraffic API key
+      - name: v
+        in: query
+        schema:
+          type: integer
+          enum:
+          - 3
+          - 4
+          - 5
+          default: 4
+        description: API version
+      - name: MMSI
+        in: query
+        schema:
+          type: string
+          pattern: ^[0-9]{9}$
+        description: Maritime Mobile Service Identity number (9 digits)
+      - name: IMO
+        in: query
+        schema:
+          type: integer
+        description: International Maritime Organization number
+      - name: vessel_name
+        in: query
+        schema:
+          type: string
+      - name: protocol
+        in: query
+        schema:
+          type: string
+          enum:
+          - jsono
+          - xml
+          default: jsono
+      - name: msgtype
+        in: query
+        schema:
+          type: string
+          enum:
+          - simple
+          - extended
+          default: simple
+      responses:
+        '200':
+          description: Vessel details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VesselResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+components:
+  schemas:
+    Vessel:
+      type: object
+      description: Vessel static and voyage data
+      properties:
+        MMSI:
+          type: string
+          description: Maritime Mobile Service Identity
+          pattern: ^[0-9]{9}$
+        IMO:
+          type: integer
+          description: International Maritime Organization number
+        SHIP_ID:
+          type: integer
+          description: MarineTraffic internal vessel ID
+        LAT:
+          type: number
+          format: double
+          description: Last known latitude (WGS84)
+        LON:
+          type: number
+          format: double
+          description: Last known longitude (WGS84)
+        SPEED:
+          type: number
+          description: Speed over ground in knots (× 10)
+        HEADING:
+          type: integer
+          description: True heading in degrees (0-359)
+        COURSE:
+          type: number
+          description: Course over ground in degrees
+        STATUS:
+          type: integer
+          description: AIS navigational status code
+        TIMESTAMP:
+          type: string
+          format: date-time
+          description: UTC timestamp of last position report
+        DSRC:
+          type: string
+          enum:
+          - TER
+          - SAT
+          description: Data source - terrestrial or satellite AIS
+        VESSEL_NAME:
+          type: string
+        CALLSIGN:
+          type: string
+        FLAG:
+          type: string
+          description: ISO 3166-1 alpha-2 flag state code
+        SHIPTYPE:
+          type: integer
+          description: AIS vessel type code
+        CARGO:
+          type: integer
+          description: Cargo type code
+        CURRENT_PORT:
+          type: string
+        LAST_PORT:
+          type: string
+        NEXT_PORT_NAME:
+          type: string
+        ETA:
+          type: string
+          format: date-time
+          description: Estimated time of arrival at destination
+        DESTINATION:
+          type: string
+        LENGTH:
+          type: integer
+          description: Vessel length in meters
+        WIDTH:
+          type: integer
+          description: Vessel beam/width in meters
+        DRAUGHT:
+          type: number
+          description: Current draught in meters
+        GT:
+          type: integer
+          description: Gross tonnage
+        DWT:
+          type: integer
+          description: Deadweight tonnage
+        YEAR_BUILT:
+          type: integer
+    VesselResponse:
+      type: object
+      properties:
+        DATA:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vessel'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+              description:
+                type: string
+  responses:
+    Unauthorized:
+      description: Invalid API key or subscription does not include this service
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimitExceeded:
+      description: API credits exhausted or rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      in: query
+      name: apikey
+      description: MarineTraffic API key provided in the URL path for most endpoints
+externalDocs:
+  description: MarineTraffic API Documentation
+  url: https://www.kpler.com/product/maritime/data-services
