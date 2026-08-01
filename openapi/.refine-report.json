@@ -1,0 +1,18 @@
+{
+  "provider": "marinetraffic",
+  "sources": [
+    "marinetraffic-port-operations-api-openapi.yml",
+    "marinetraffic-vessel-tracking-api-openapi.yml",
+    "marinetraffic-vessels-api-openapi.yml"
+  ],
+  "outputs": [
+    "marinetraffic-port-operations-api-openapi.yml",
+    "marinetraffic-vessel-tracking-api-openapi.yml",
+    "marinetraffic-vessels-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
