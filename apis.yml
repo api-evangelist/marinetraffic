@@ -27,7 +27,7 @@ tags:
   - Shipping
   - Vessel Tracking
 created: '2026-03-18'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 url: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/apis.yml
 apis:
 - aid: marinetraffic:marinetraffic-real-time-events-api
