@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MarineTraffic AIS Port Operations Vessel Tracking API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vessel Tracking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vessel position track",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.marinetraffic.com/api/exportvesseltrack/:apikey",
+            "params": [
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "MMSI",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromdate",
+                "value": "",
+                "type": "query",
+                "description": "Track start time (UTC, ISO 8601)"
+              },
+              {
+                "name": "todate",
+                "value": "",
+                "type": "query",
+                "description": "Track end time (UTC, ISO 8601)"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the position history (track) of a vessel over a specified time period. Returns a sequence of AIS position reports."
+        },
+        {
+          "info": {
+            "name": "Get vessel positions in area",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.marinetraffic.com/api/getvesselpositions/:apikey",
+            "params": [
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "MINLAT",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "MAXLAT",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "MINLON",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "MAXLON",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "SHIPTYPE",
+                "value": "",
+                "type": "query",
+                "description": "AIS vessel type code filter"
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve real-time positions of all vessels currently within a specified geographic bounding box."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

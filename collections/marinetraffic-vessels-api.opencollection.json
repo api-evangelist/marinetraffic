@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MarineTraffic AIS Vessel Tracking Port Operations Vessels API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vessels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vessel details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.marinetraffic.com/api/exportvessel/:apikey",
+            "params": [
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "path",
+                "description": "Your MarineTraffic API key"
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query",
+                "description": "API version"
+              },
+              {
+                "name": "MMSI",
+                "value": "",
+                "type": "query",
+                "description": "Maritime Mobile Service Identity number (9 digits)"
+              },
+              {
+                "name": "IMO",
+                "value": "",
+                "type": "query",
+                "description": "International Maritime Organization number"
+              },
+              {
+                "name": "vessel_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "msgtype",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve vessel characteristics and current static data from the MarineTraffic ship database including name, flag, type, dimensions, and registration details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

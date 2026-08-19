@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MarineTraffic AIS Vessel Tracking Port Operations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Port Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get expected vessel arrivals at a port",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.marinetraffic.com/api/getexpectedarrivals/:apikey",
+            "params": [
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "portid",
+                "value": "",
+                "type": "query",
+                "description": "MarineTraffic port identifier"
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "todate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve vessels expected to arrive at a specific port based on voyage destination data and ETA information from AIS messages."
+        },
+        {
+          "info": {
+            "name": "Get port call events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.marinetraffic.com/api/getportcalls/:apikey",
+            "params": [
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "portid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "MMSI",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromdate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "todate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve historical and live port call events (arrivals, departures) for a port or vessel within a given time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

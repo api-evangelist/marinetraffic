@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "139de834-c2eb-453a-b9a7-276d64bd5af8",
+      "name": "Vessel Tracking",
+      "description": {
+        "content": "Real-time and historical vessel positions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "98d2b70e-ecc3-475a-bfee-8d8dccf0e01c",
+          "name": "Get vessel position track",
+          "request": {
+            "name": "Get vessel position track",
+            "description": {
+              "content": "Retrieve the position history (track) of a vessel over a specified time period. Returns a sequence of AIS position reports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exportvesseltrack",
+                ":apikey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "v",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "MMSI",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "fromdate",
+                  "value": "<dateTime>",
+                  "description": "(Required) Track start time (UTC, ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "todate",
+                  "value": "<dateTime>",
+                  "description": "(Required) Track end time (UTC, ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "jsono"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d0dff29-7040-4fdf-9926-1abc98b0e438",
+              "name": "Vessel position track",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exportvesseltrack",
+                    ":apikey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "v",
+                      "value": "1"
+                    },
+                    {
+                      "key": "MMSI",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromdate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "todate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "jsono"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apikey",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"DATA\": [\n    {\n      \"MMSI\": \"string\",\n      \"LAT\": 7199.629209129923,\n      \"LON\": 8434.837105279572,\n      \"SPEED\": 3829.0062995882545,\n      \"HEADING\": 8582,\n      \"COURSE\": 837.6336666159845,\n      \"STATUS\": 9095,\n      \"TIMESTAMP\": \"1966-06-03T07:59:22.459Z\"\n    },\n    {\n      \"MMSI\": \"string\",\n      \"LAT\": 6654.322420000303,\n      \"LON\": 8800.381128460918,\n      \"SPEED\": 1905.225747880077,\n      \"HEADING\": 7625,\n      \"COURSE\": 6804.923770920206,\n      \"STATUS\": 7296,\n      \"TIMESTAMP\": \"2002-09-17T18:47:52.343Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0bc19f9-9e4b-4d19-b317-1b4c1620ab97",
+          "name": "Get vessel positions in area",
+          "request": {
+            "name": "Get vessel positions in area",
+            "description": {
+              "content": "Retrieve real-time positions of all vessels currently within a specified geographic bounding box.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getvesselpositions",
+                ":apikey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "MINLAT",
+                  "value": "<double>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "MAXLAT",
+                  "value": "<double>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "MINLON",
+                  "value": "<double>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "MAXLON",
+                  "value": "<double>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "SHIPTYPE",
+                  "value": "<integer>",
+                  "description": "AIS vessel type code filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "v",
+                  "value": "8"
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "jsono"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0dd9110-ea27-440c-8904-a981bc484094",
+              "name": "Vessel positions in area",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getvesselpositions",
+                    ":apikey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MINLAT",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "MAXLAT",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "MINLON",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "MAXLON",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "SHIPTYPE",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "v",
+                      "value": "8"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "jsono"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apikey",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"DATA\": [\n    {\n      \"MMSI\": \"618135536\",\n      \"IMO\": 489,\n      \"SHIP_ID\": 3406,\n      \"LAT\": 2471.2368559729957,\n      \"LON\": 255.3820669491247,\n      \"SPEED\": 9542.036223056302,\n      \"HEADING\": 8723,\n      \"COURSE\": 5469.577296098673,\n      \"STATUS\": 7795,\n      \"TIMESTAMP\": \"2009-04-24T22:23:23.936Z\",\n      \"DSRC\": \"TER\",\n      \"VESSEL_NAME\": \"string\",\n      \"CALLSIGN\": \"string\",\n      \"FLAG\": \"string\",\n      \"SHIPTYPE\": 8723,\n      \"CARGO\": 8415,\n      \"CURRENT_PORT\": \"string\",\n      \"LAST_PORT\": \"string\",\n      \"NEXT_PORT_NAME\": \"string\",\n      \"ETA\": \"2001-10-28T10:37:23.121Z\",\n      \"DESTINATION\": \"string\",\n      \"LENGTH\": 6678,\n      \"WIDTH\": 3758,\n      \"DRAUGHT\": 5447.1918785128155,\n      \"GT\": 7059,\n      \"DWT\": 1524,\n      \"YEAR_BUILT\": 8023\n    },\n    {\n      \"MMSI\": \"807764505\",\n      \"IMO\": 9907,\n      \"SHIP_ID\": 8296,\n      \"LAT\": 2723.8230746993686,\n      \"LON\": 1058.4844775882973,\n      \"SPEED\": 6356.85789412745,\n      \"HEADING\": 7242,\n      \"COURSE\": 7918.8333941042965,\n      \"STATUS\": 7597,\n      \"TIMESTAMP\": \"1978-05-26T03:09:08.571Z\",\n      \"DSRC\": \"SAT\",\n      \"VESSEL_NAME\": \"string\",\n      \"CALLSIGN\": \"string\",\n      \"FLAG\": \"string\",\n      \"SHIPTYPE\": 6487,\n      \"CARGO\": 5312,\n      \"CURRENT_PORT\": \"string\",\n      \"LAST_PORT\": \"string\",\n      \"NEXT_PORT_NAME\": \"string\",\n      \"ETA\": \"2003-03-17T15:21:06.230Z\",\n      \"DESTINATION\": \"string\",\n      \"LENGTH\": 8955,\n      \"WIDTH\": 2556,\n      \"DRAUGHT\": 3265.694670385225,\n      \"GT\": 3241,\n      \"DWT\": 8887,\n      \"YEAR_BUILT\": 7123\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://services.marinetraffic.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ee4a0507-daff-4685-bd73-bcea641a3ff6",
+    "name": "MarineTraffic AIS Port Operations Vessel Tracking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "MarineTraffic AIS API provides real-time vessel position data from over 13,000 AIS receivers globally. Returns vessel positions, speeds, headings, and voyage information for fleet monitoring, port operations, and supply chain visibility.\n\nContact Support:\n Name: MarineTraffic / Kpler Support",
+      "type": "text/plain"
+    }
+  }
+}
