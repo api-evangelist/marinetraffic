@@ -5,6 +5,18 @@ description: >-
   offers AIS-based real-time vessel positions, port calls, predictive ETAs, historical voyage data, and ship registry
   information used for fleet monitoring, port operations, and supply chain visibility.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
