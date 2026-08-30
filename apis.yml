@@ -32,7 +32,6 @@ accessModel:
   method: derived
 position: Consumer
 access: 3rd-Party
-image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
 tags:
   - AIS
   - Maritime
@@ -54,7 +53,6 @@ apis:
   - Events
   - Maritime
   - Port Calls
-  image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
   humanURL: https://www.kpler.com/product/maritime/data-services
   baseURL: https://services.marinetraffic.com/api
   properties:
@@ -70,7 +68,6 @@ apis:
   - Maritime
   - Predictions
   - Voyage Forecasting
-  image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
   humanURL: https://www.kpler.com/product/maritime/data-services
   baseURL: https://services.marinetraffic.com/api
   properties:
@@ -85,7 +82,6 @@ apis:
   - Historical
   - Maritime
   - Vessel Movements
-  image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
   humanURL: https://www.kpler.com/product/maritime/data-services
   baseURL: https://services.marinetraffic.com/api
   properties:
@@ -100,7 +96,6 @@ apis:
   - Maritime
   - Ship Registry
   - Vessel Data
-  image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
   humanURL: https://www.kpler.com/product/maritime/data-services
   baseURL: https://services.marinetraffic.com/api
   properties:
@@ -117,7 +112,6 @@ apis:
   - Shipping
   - Vessel Tracking
   - XML
-  image: https://raw.githubusercontent.com/api-evangelist/marinetraffic/refs/heads/main/image.png
   humanURL: https://www.marinetraffic.com/en/ais-api-services
   baseURL: https://services.marinetraffic.com/api
   properties:
